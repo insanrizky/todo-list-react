@@ -6,22 +6,41 @@ class AddToDo extends Component {
     constructor(props){
         super(props);
         this.state = {
-            input: ''
+            input: '',
+            time: '',
+
+            required: true,
         }
+    }
+
+    handleRequired(){
+        this.setState({
+            required: this.state.input === '' || this.state.time === ''
+        });
     }
 
     handleInput(e){
         this.setState({
             input: e.target.value
-        });
+        }, () => this.handleRequired());
+    }
+
+    handleTime(e){
+        this.setState({
+            time: e.target.value
+        }, () => this.handleRequired());
     }
 
     submit(){
-        const text = this.state.input;
+        const text = {
+            todo: this.state.input,
+            time: this.state.time
+        };
         this.props.simpan(text);
 
         this.setState({
-            input: ''
+            input: '',
+            time: ''
         })
     }
 
@@ -31,11 +50,22 @@ class AddToDo extends Component {
                 <h3>To Do List</h3>
                 <input 
                     type="text"
-                    placeholder="to do"
+                    placeholder="To Do"
                     onChange={(e) => this.handleInput(e)}
                     value={this.state.input}
                     />
-                <button onClick={() => this.submit()}>Add To Do</button>
+                <br/>
+                <input
+                    type="text"
+                    placeholder="Time"
+                    onChange={(e) => this.handleTime(e)}
+                    value={this.state.time}
+                    />
+                <br/>
+                <button 
+                    disabled={this.state.required}
+                    onClick={() => this.submit()}
+                    >Add To Do</button>
             </div>
         )
     }

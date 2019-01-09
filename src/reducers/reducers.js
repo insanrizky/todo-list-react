@@ -10,12 +10,17 @@ const toDoList = {
   list: [
     {
       text: 'makan malam',
-      time: '',
+      time: '19.00',
       completed: false
     },
     {
       text: 'makan siang',
-      time: '',
+      time: '13.00',
+      completed: true
+    },
+    {
+      text: 'makan siang',
+      time: '13.00',
       completed: true
     }
   ],
@@ -30,7 +35,8 @@ function todos(state = toDoList, action) {
           list: [
             ...state.list,
             {
-              text: action.text,
+              text: action.text.todo,
+              time: action.text.time,
               completed: false
             }
           ]

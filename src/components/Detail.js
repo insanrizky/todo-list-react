@@ -9,7 +9,7 @@ class Detail extends Component {
     }
     renderDetail() {
         if (this.props.detail) {
-            return <h3>{ parseInt(this.props.route.match.params.index)+1 } - { this.props.detail.text }</h3>
+            return <h3>{ parseInt(this.props.route.match.params.index)+1 } - { this.props.detail.text }  - { this.props.detail.time } </h3>
         } else {
             return <h3>Data Tidak Ditemukan</h3>
         }

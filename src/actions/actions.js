@@ -14,6 +14,6 @@ export function getTodoByIndex(index) {
     return { type: GET_BY_INDEX, text: index }
 }
 
-export function deleteTodo(index) {
-    return { type: DELETE_TODO, text: index }
+export function deleteTodo(text) {
+    return { type: DELETE_TODO, text }
 }
